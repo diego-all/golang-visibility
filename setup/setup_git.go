@@ -63,8 +63,12 @@ func RunGitSetup() {
 		return
 	}
 
-	// Ejecutar git remote add origin
-	cmd4 := exec.Command("git", "remote", "add", "origin", fmt.Sprintf("git@github.com:%s/%s.git", alias, username))
+	// Modificación en el comando de git remote add origin
+	// Construir la URL usando el alias y username
+	remoteURL := fmt.Sprintf("https://github.%s/%s/golang-visibility.git", alias, username)
+
+	// Ejecutar git remote add origin con la nueva URL
+	cmd4 := exec.Command("git", "remote", "add", "origin", remoteURL)
 	err = cmd4.Run()
 	if err != nil {
 		fmt.Println("Error al ejecutar git remote add origin:", err)
